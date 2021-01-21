@@ -19,7 +19,7 @@
 
 const str = 'is active';
 
-function toCamelCase(str, caseName = 'kebab-case') {
+function setCase(str, caseName = 'kebab-case') {
     // show messsage when case name is not one of the 4
     // 1.
     const caseNameOptionsList = ['camelCase', 'PascalCase', 'kebab-case', 'snake_case'];
@@ -75,9 +75,9 @@ function toCamelCase(str, caseName = 'kebab-case') {
     return updatedArray.join('');
 }
 
-console.log(toCamelCase(str, 'camelCase')); // isActive
-console.log(toCamelCase(str, 'PascalCase')); // IsActive
-console.log(toCamelCase(str, 'kebab-case')); // is-active
-console.log(toCamelCase(str, 'snake_case')); // is_active
-console.log(toCamelCase(str, 'hello')); // return original string: is active, when passing value for caseName that doesn't exist
-console.log(toCamelCase(str)); // when no casename, use kebab case: is-active
+console.log(setCase(str, 'camelCase')); // isActive
+console.log(setCase(str, 'PascalCase')); // IsActive
+console.log(setCase(str, 'kebab-case')); // is-active
+console.log(setCase(str, 'snake_case')); // is_active
+console.log(setCase(str, 'hello')); // return original string: is active, when passing value for caseName that doesn't exist
+console.log(setCase(str)); // when no casename, use kebab case: is-active
