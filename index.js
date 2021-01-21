@@ -1,44 +1,83 @@
-// Title case
-// This is a title 
-// to be transformed 
-// This Is A Title
+// camelCase
+// PascalCase
+// kebab-case
+// snake_case
+
+// 'is active selection' ->
+
+// isActiveSelection
 
 // go through each word
-// change the 1st letter to capital
+// skip the first word
+// every other - capitalize 1st letter
+// no spaces beween words
 
-function toTitleCase(str) {
-    const strArray = str.split(' '); // ['this', 'is', 'a', 'title']
+// IsActive
+
+// is-active
+// is_active
+
+const str = 'is active';
+
+function toCamelCase(str, caseName = 'kebab-case') {
+    // show messsage when case name is not one of the 4
     // 1.
-    const updatedArray = [];
+    const caseNameOptionsList = ['camelCase', 'PascalCase', 'kebab-case', 'snake_case'];
 
-    for (let i = 0; i < strArray.length; i++) {
-        const word = strArray[i];
-        // this
-        // t -> T
-        // T + his -> This
-        let updatedWord = word[0].toUpperCase();
-        // console.log(word[0].toUpperCase()); // T I A T
-        let completeWord = updatedWord + word.slice(1);
-        console.log(completeWord) // 'This', 'Is', 'A', 'Title'
+    // if (caseNameOptionsList.indexOf(caseName) === -1) {
+    if (!caseNameOptionsList.includes(caseName)) {
+        console.log(`Please use: ${caseNameOptionsList}`);
 
-        // 1.
-        strArray[i] = completeWord;
-
-        // 2.
-        updatedArray.push(completeWord);
+        return str;
     }
-    // 1.
-    // console.log(updatedArray); // ['This', 'Is', 'A', 'Title'];
-    // console.log(updatedArray.join(' ')); // 'This Is A Title'
-    // 2.
-    // console.log(strArray); // ['This', 'Is', 'A', 'Title'];
-    // console.log(strArray.join(' ')); // 'This Is A Title'
 
-    return strArray.join(' ');
+    // 2.
+    // if (caseName !== 'camelCase' &&
+    //     caseName !== 'PascalCase' &&
+    //     caseName !== 'kebab-case' &&
+    //     caseName !== 'snake_case') {
+    //     console.log('Please use: camelCase, PascalCase, kebab-case, snake_case');
+
+    //     return str;
+    // }
+
+    console.log('Params are', str, caseName);
+    const strArray = str.split(' ');
+
+    if (caseName === 'snake_case') {
+        return strArray.join('_');
+    }
+
+    if (caseName === 'kebab-case') {
+        return strArray.join('-');
+    }
+
+    // console.log(strArray) // ['is', 'active']
+    const updatedArray = [];
+    let startingIndex = 0;
+
+    if (caseName === 'camelCase') {
+        startingIndex = 1;
+        updatedArray.push(strArray[0]);
+    }
+
+    for (let i = startingIndex; i < strArray.length; i++) {
+        const word = strArray[i];
+        const firstLetter = word[0].toUpperCase();
+        const updatedWord = firstLetter + word.slice(1);
+        // console.log(updatedWord); // Active
+        updatedArray.push(updatedWord);
+    }
+
+    // console.log(updatedArray); // ['is', 'Active']
+    // console.log(updatedArray.join('')); // 'isActive'
+
+    return updatedArray.join('');
 }
 
-const str = 'This is a title';
-console.log(str.split(' ')); // logs ['this', 'is', 'a', 'title']
-
-console.log(toTitleCase(str)); // 'This Is A Title'
-
+console.log(toCamelCase(str, 'camelCase')); // isActive
+console.log(toCamelCase(str, 'PascalCase')); // IsActive
+console.log(toCamelCase(str, 'kebab-case')); // is-active
+console.log(toCamelCase(str, 'snake_case')); // is_active
+console.log(toCamelCase(str, 'hello')); // return original string: is active, when passing value for caseName that doesn't exist
+console.log(toCamelCase(str)); // when no casename, use kebab case: is-active
