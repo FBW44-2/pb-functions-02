@@ -3,11 +3,10 @@
 // to be transformed 
 // This Is A Title
 
-
 // go through each word
 // change the 1st letter to capital
 
-function toTitlecase(str) {
+function toTitleCase(str) {
     const strArray = str.split(' '); // ['this', 'is', 'a', 'title']
     // 1.
     const updatedArray = [];
@@ -41,4 +40,5 @@ function toTitlecase(str) {
 const str = 'This is a title';
 console.log(str.split(' ')); // logs ['this', 'is', 'a', 'title']
 
-console.log(toTitlecase(str)); // 'This Is A Title'
+console.log(toTitleCase(str)); // 'This Is A Title'
+
